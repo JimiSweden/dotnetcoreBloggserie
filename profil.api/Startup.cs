@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -29,12 +24,6 @@ namespace profil.api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //Run används vanligen inte i produktionskod, utan mest för demos. Run är en "terminal middleware", inga andra middlewares körs efter denna
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
 
             app.UseMvc();
         }
