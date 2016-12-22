@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>.Net core Web Api Projektanteckningar/Steps</title>
+</head>
+<body>
+
+    <h1 id="net-core-web-api-projektanteckningarsteps">.Net core Web Api Projektanteckningar/Steps</h1>
+<h2 id="skapa-nytt-projekt-for-api">Skapa nytt projekt för API</h2>
+<ul>
+<li><p>Lägg till nytt projekt, ASP.NET Core Web Application (.NET Core)
+ange namn, profil.api, välj Empty template.</p>
+</li>
+<li><p>Starta appen i Debug för att verifera att du får upp en browser med meddelandet &quot;Hello World!&quot;</p>
+</li>
+</ul>
+<p>I <a href="Program.cs">Program.cs</a> finns inställningarna för webbservern, t ex om vi vill köra IIS Express eller något annat, vi låter dessa vara som de är.</p>
+<p>I <a href="Startup.cs">Startup.cs</a>  konfigurerar man &quot;service dependencies&quot; (i metoden ConfigureServices) och  HTTP Request pipeline (i metoden Configure)</p>
+<h4 id="http-request-pipeline">Http Request pipeline</h4>
+<p><em>i Startup.cs &gt; Configure</em></p>
+<ul>
+<li><p>Http Request pipeline består av ett antal &quot;middlewares&quot; vilka kopplas på IApplicationBuilder (app)
+vanliga  middelwares hämtar du från nuget, och du kan så klart skriva egna.</p>
+</li>
+<li><p>Ordningen för middlewares är viktig eftersom en middleware tar emot data från föregående middleware,
+gör sin grej och skickar sedan vidare data till nästa i &quot;pipen&quot; (kedjan) [mw 1, mw 2, mw 3] och lyssnar (eventuellt) på resultatet från den/de senare i kedjan [mw 3, mw 2, mw 1]</p>
+</li>
+<li><p>Vissa middelwares är &quot;terminal&quot; vilket betyder att de inte skickar data vidare, de är sist i kedjan;
+några exempel är UseWelcomePage() och Run(), alla middlewares configurerade senare i kedjan kommer alltså inte att köras.</p>
+</li>
+</ul>
+<p><strong>Editera <a href="Startup.cs">Startup.cs</a></strong></p>
+
+
+</body>
+</html>

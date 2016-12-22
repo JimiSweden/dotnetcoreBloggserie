@@ -1,0 +1,25 @@
+﻿# .Net core Web Api Projektanteckningar/Steps
+
+
+
+## Skapa nytt projekt för API
+- Lägg till nytt projekt, ASP.NET Core Web Application (.NET Core)
+ange namn, profil.api, välj Empty template.
+
+- Starta appen i Debug för att verifera att du får upp en browser med meddelandet "Hello World!"
+
+I [Program.cs](Program.cs) finns inställningarna för webbservern, t ex om vi vill köra IIS Express eller något annat, vi låter dessa vara som de är.
+
+I [Startup.cs](Startup.cs)  konfigurerar man "service dependencies" (i metoden ConfigureServices) och  HTTP Request pipeline (i metoden Configure)
+
+#### Http Request pipeline
+*i Startup.cs > Configure*
+- Http Request pipeline består av ett antal "middlewares" vilka kopplas på IApplicationBuilder (app)
+vanliga  middelwares hämtar du från nuget, och du kan så klart skriva egna.
+- Ordningen för middlewares är viktig eftersom en middleware tar emot data från föregående middleware, 
+gör sin grej och skickar sedan vidare data till nästa i "pipen" (kedjan) [mw 1, mw 2, mw 3] och lyssnar (eventuellt) på resultatet från den/de senare i kedjan [mw 3, mw 2, mw 1]
+
+- Vissa middelwares är "terminal" vilket betyder att de inte skickar data vidare, de är sist i kedjan; 
+	några exempel är UseWelcomePage() och Run(), alla middlewares configurerade senare i kedjan kommer alltså inte att köras.
+
+**Editera [Startup.cs](Startup.cs)**
