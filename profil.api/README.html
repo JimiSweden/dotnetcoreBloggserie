@@ -47,7 +47,16 @@ några exempel är UseWelcomePage() och Run(), alla middlewares configurerade se
 <ul>
 <li>och lägg till ett repository för att hämta konsultprofilerna</li>
 <li>med repositoryt <a href="ConsultantProfileRepository.cs">ConsultantProfileRepository.cs</a> på plats kan vi lägga till en controller för att låta vårt api hämta data.</li>
-<li>för att controllern ska hittas behövs routing, det kan man sätta direkt på controllern alternativt i Startup.cs &gt; Configure (eller både och om det behövs)</li>
+<li>för att controllern ska hittas behövs routing, det kan man sätta direkt på controllern som vi visar i koden, alternativt i Startup.cs &gt; Configure (eller både och, controllerns konfig väger tyngst)
+exempel:
+<pre><code>  private void ConfigureRoutes(IRouteBuilder routeBuilder)
+  		{
+  			routeBuilder.MapRoute(&quot;Default&quot;,
+  				&quot;{controller=Home}/{action=Index}/{id?}&quot;); // controller=Home &gt;&gt; om controller name inte hittas (eller inte angavs), redirect till HomeController med default action(metod) Index
+  		}
+  // används i Configure enligt, app.UseMvc(ConfigureRoutes)
+</code></pre>
+</li>
 </ul>
 
 

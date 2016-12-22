@@ -35,4 +35,15 @@ gör sin grej och skickar sedan vidare data till nästa i "pipen" (kedjan) [mw 1
 #### Öppna [Startup.cs](Startup.cs)
 - och lägg till ett repository för att hämta konsultprofilerna
 - med repositoryt [ConsultantProfileRepository.cs](ConsultantProfileRepository.cs) på plats kan vi lägga till en controller för att låta vårt api hämta data.
-- för att controllern ska hittas behövs routing, det kan man sätta direkt på controllern alternativt i Startup.cs > Configure (eller både och om det behövs)
+- för att controllern ska hittas behövs routing, det kan man sätta direkt på controllern som vi visar i koden, alternativt i Startup.cs > Configure (eller både och, controllerns konfig väger tyngst)
+exempel: 
+	```
+	private void ConfigureRoutes(IRouteBuilder routeBuilder)
+			{
+				routeBuilder.MapRoute("Default",
+					"{controller=Home}/{action=Index}/{id?}"); // controller=Home >> om controller name inte hittas (eller inte angavs), redirect till HomeController med default action(metod) Index
+			}
+	// används i Configure enligt, app.UseMvc(ConfigureRoutes)
+	```
+
+
