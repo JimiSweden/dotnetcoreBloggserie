@@ -45,5 +45,10 @@ exempel:
 			}
 	// används i Configure enligt, app.UseMvc(ConfigureRoutes)
 	```
+- nu har vi ett fungerande api som kan leverera konsultprofiler, nästa steg är att lägga till autentisering vilket vi gör med .Net Core Identity och [Identity Server 4](https://github.com/IdentityServer/IdentityServer4)
+
+## Nytt projekt för IdentityServer och .Net Core Identity
+Här följer jag exemplet från https://identityserver4.readthedocs.io/en/release/quickstarts/6_aspnet_identity.html , (det finns även ett exempelprojekt här https://github.com/IdentityServer/IdentityServer4.Samples/tree/dev/Quickstarts/6_AspNetIdentity),
+med deras färdiga UI https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
 
 
