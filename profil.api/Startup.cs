@@ -16,6 +16,7 @@ namespace profil.api
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddScoped<IConsultantProfileRepository, InMemoryConsultantProfileRepository>(); //Scoped skapar en instans per http request
         }
 
@@ -29,10 +30,13 @@ namespace profil.api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            //Run används vanligen inte i produktionskod, utan mest för demos. Run är en "terminal middleware", inga andra middlewares körs efter denna
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
+
+            app.UseMvc();
         }
     }
 }
