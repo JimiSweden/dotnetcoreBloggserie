@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace profil.api
+namespace profil.api.Models
 {
     public interface IConsultantProfileRepository
     {
@@ -9,19 +9,6 @@ namespace profil.api
         IEnumerable<ConsultantProfileLimitedViewModel> GetAllLimited();
     }
 
-    public class ConsultantProfileLimitedViewModel
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-    }
-
-    public class ConsultantProfile
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Description { get; set; }
-    }
-    
     //en första implementation utan att blanda in databaser
     public class InMemoryConsultantProfileRepository : IConsultantProfileRepository
     {

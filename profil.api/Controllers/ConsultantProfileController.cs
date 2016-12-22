@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using profil.api.Models;
 
 namespace profil.api.Controllers
 {
