@@ -50,5 +50,6 @@ exempel:
 ## Nytt projekt för IdentityServer och .Net Core Identity
 Här följer jag exemplet från https://identityserver4.readthedocs.io/en/release/quickstarts/6_aspnet_identity.html , (det finns även ett exempelprojekt här https://github.com/IdentityServer/IdentityServer4.Samples/tree/dev/Quickstarts/6_AspNetIdentity),
 med deras färdiga UI https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
-- följ stegen från "New Project for ASP.NET Identity" till 
-
+- följ stegen från "New Project for ASP.NET Identity" till och med "Creating a user"
+  - när jag uppdaterade alla paket till det senaste misslyckades nuget med restore, här finns info om hur man uppdaterar nuget till senaste beta https://docs.nuget.org/ndocs/guides/install-nuget ,  
+  - efter det följde jag denna länk för uppdatering till .net core 1.1 https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/
