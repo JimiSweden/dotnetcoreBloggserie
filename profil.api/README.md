@@ -1,4 +1,14 @@
 ﻿# .Net core Web Api Projektanteckningar/Steps
+### Projektkrav 
+Applikationen ska visa en lista av konsultprofiler
+- En profil består av Förnamn, Efternamn och en Beskrivning
+
+Som en anonym användare kan jag
+- Registrera mig
+- Se förnamn på profilerna
+	
+Som en registrerad användare kan jag
+- Se all information i konsultprofilerna
 
 
 
@@ -22,4 +32,5 @@ gör sin grej och skickar sedan vidare data till nästa i "pipen" (kedjan) [mw 1
 - Vissa middelwares är "terminal" vilket betyder att de inte skickar data vidare, de är sist i kedjan; 
 	några exempel är UseWelcomePage() och Run(), alla middlewares configurerade senare i kedjan kommer alltså inte att köras.
 
-**Editera [Startup.cs](Startup.cs)**
+#### Öppna [Startup.cs](Startup.cs)
+- och lägg till ett repository för att hämta konsultprofilerna

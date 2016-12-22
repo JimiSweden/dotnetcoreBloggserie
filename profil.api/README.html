@@ -6,6 +6,20 @@
 <body>
 
     <h1 id="net-core-web-api-projektanteckningarsteps">.Net core Web Api Projektanteckningar/Steps</h1>
+<h3 id="projektkrav">Projektkrav</h3>
+<p>Applikationen ska visa en lista av konsultprofiler</p>
+<ul>
+<li>En profil består av Förnamn, Efternamn och en Beskrivning</li>
+</ul>
+<p>Som en anonym användare kan jag</p>
+<ul>
+<li>Registrera mig</li>
+<li>Se förnamn på profilerna</li>
+</ul>
+<p>Som en registrerad användare kan jag</p>
+<ul>
+<li>Se all information i konsultprofilerna</li>
+</ul>
 <h2 id="skapa-nytt-projekt-for-api">Skapa nytt projekt för API</h2>
 <ul>
 <li><p>Lägg till nytt projekt, ASP.NET Core Web Application (.NET Core)
@@ -29,7 +43,10 @@ gör sin grej och skickar sedan vidare data till nästa i &quot;pipen&quot; (ked
 några exempel är UseWelcomePage() och Run(), alla middlewares configurerade senare i kedjan kommer alltså inte att köras.</p>
 </li>
 </ul>
-<p><strong>Editera <a href="Startup.cs">Startup.cs</a></strong></p>
+<h4 id="oppna-startup.cs">Öppna <a href="Startup.cs">Startup.cs</a></h4>
+<ul>
+<li>och lägg till ett repository för att hämta konsultprofilerna</li>
+</ul>
 
 
 </body>
