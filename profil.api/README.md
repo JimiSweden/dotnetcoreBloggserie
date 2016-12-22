@@ -34,7 +34,7 @@ gör sin grej och skickar sedan vidare data till nästa i "pipen" (kedjan) [mw 1
 
 #### Öppna [Startup.cs](Startup.cs)
 - och lägg till ett repository för att hämta konsultprofilerna
-- med repositoryt [ConsultantProfileRepository.cs](ConsultantProfileRepository.cs) på plats kan vi lägga till en controller för att låta vårt api hämta data.
+- med repositoryt [ConsultantProfileRepository.cs](Models/ConsultantProfileRepository.cs) på plats kan vi lägga till en controller för att låta vårt api hämta data.
 - för att controllern ska hittas behövs routing, det kan man sätta direkt på controllern som vi visar i koden, alternativt i Startup.cs > Configure (eller både och, controllerns konfig väger tyngst)
 exempel: 
 	```
