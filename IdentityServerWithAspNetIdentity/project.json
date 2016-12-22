@@ -2,6 +2,7 @@
   "userSecretsId": "aspnet-IdentityServerWithAspNetIdentity-a0dbe638-1e20-4236-9315-40bbabcb8a26",
 
   "dependencies": {
+    "IdentityServer4.AspNetIdentity": "1.0.0-rc5",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.1.0",
