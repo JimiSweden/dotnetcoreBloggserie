@@ -13,7 +13,7 @@ namespace IdentityServerWithAspNetIdentity
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseUrls("http://localhost:5000")
+                .UseUrls("http://localhost:5000") //uppdatera port
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
