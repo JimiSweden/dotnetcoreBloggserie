@@ -114,10 +114,11 @@ Jag är ganska bekväm med NUnuit, men eftersom deras [testrunner för .net core
 - lägg till nuget packages och config för xUnit
 ```language-aspnet
 {
+
     "testRunner": "xunit",
     "dependencies": {
-        "xunit": "2.2.0-*",
-        "dotnet-test-xunit": "2.2.0-*"
+        "xunit": "2.2.0-beta2-build3300",
+        "dotnet-test-xunit": "2.2.0-preview2-build1029"
     },
     "frameworks": {
         "netcoreapp1.1": {
@@ -131,4 +132,16 @@ Jag är ganska bekväm med NUnuit, men eftersom deras [testrunner för .net core
     }
 }
 ```
-- följ instruktionerna i [xUnit getting started](https://xunit.github.io/docs/getting-started-dotnet-core.html) för att göra ett första test (eller kolla i testprojektet, Class1.cs), nu ska du kunna köra testerna från en kommandoprompt med kommandot "dotnet test"
+- följ instruktionerna i [xUnit getting started](https://xunit.github.io/docs/getting-started-dotnet-core.html) för att göra ett första test, nu ska du kunna köra testerna från en kommandoprompt med kommandot "dotnet test"
+
+### Skapa tester för vårt api enligt kraven
+- Lägg till en ny testklass, ConsultantProfileControllerTest, och bygg upp tester enligt kraven
+  - Jag väljer här att endast testa på controllernivå eftersom det är där gränsen går mot användarna.
+  - När jag försökte köra testet mot apiet fick jag följande fel
+	``` 
+    Unhandled Exception: System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.DotNet.InternalAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.
+	at Xunit.Runner.DotNet.Program.GetAvailableRunnerReporters()
+    at Xunit.Runner.DotNet.Program.Run(String[] args)
+    at Xunit.Runner.DotNet.Program.Main(String[] args)
+	```
+	lösningen var att lägga till "Microsoft.DotNet.InternalAbstractions": "1.0.0" i project.json.

@@ -164,10 +164,11 @@ public IEnumerable&lt;ConsultantProfile&gt; GetFullConsultantProfiles()
 <li>lägg till nuget packages och config för xUnit</li>
 </ul>
 <pre><code class="language-language-aspnet">{
+
     &quot;testRunner&quot;: &quot;xunit&quot;,
     &quot;dependencies&quot;: {
-        &quot;xunit&quot;: &quot;2.2.0-*&quot;,
-        &quot;dotnet-test-xunit&quot;: &quot;2.2.0-*&quot;
+        &quot;xunit&quot;: &quot;2.2.0-beta2-build3300&quot;,
+        &quot;dotnet-test-xunit&quot;: &quot;2.2.0-preview2-build1029&quot;
     },
     &quot;frameworks&quot;: {
         &quot;netcoreapp1.1&quot;: {
@@ -182,7 +183,22 @@ public IEnumerable&lt;ConsultantProfile&gt; GetFullConsultantProfiles()
 }
 </code></pre>
 <ul>
-<li>följ instruktionerna i <a href="https://xunit.github.io/docs/getting-started-dotnet-core.html">xUnit getting started</a> för att göra ett första test (eller kolla i testprojektet, Class1.cs), nu ska du kunna köra testerna från en kommandoprompt med kommandot &quot;dotnet test&quot;</li>
+<li>följ instruktionerna i <a href="https://xunit.github.io/docs/getting-started-dotnet-core.html">xUnit getting started</a> för att göra ett första test, nu ska du kunna köra testerna från en kommandoprompt med kommandot &quot;dotnet test&quot;</li>
+</ul>
+<h3 id="skapa-tester-for-vart-api-enligt-kraven">Skapa tester för vårt api enligt kraven</h3>
+<ul>
+<li>Lägg till en ny testklass, ConsultantProfileControllerTest, och bygg upp tester enligt kraven
+<ul>
+<li>Jag väljer här att endast testa på controllernivå eftersom det är där gränsen går mot användarna.</li>
+<li>När jag försökte köra testet mot apiet fick jag följande fel
+<pre><code>Unhandled Exception: System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.DotNet.InternalAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.
+at Xunit.Runner.DotNet.Program.GetAvailableRunnerReporters()
+at Xunit.Runner.DotNet.Program.Run(String[] args)
+at Xunit.Runner.DotNet.Program.Main(String[] args)
+</code></pre>
+lösningen var att lägga till &quot;Microsoft.DotNet.InternalAbstractions&quot;: &quot;1.0.0&quot; i project.json.</li>
+</ul>
+</li>
 </ul>
 
 

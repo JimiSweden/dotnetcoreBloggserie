@@ -31,7 +31,7 @@ namespace profil.api.Models
 
         public IEnumerable<ConsultantProfileLimitedViewModel> GetAllLimited()
         {
-            return consultantProfiles.Select(p => new ConsultantProfileLimitedViewModel { FirstName = p.FirstName, LastName = p.LastName });
+            return consultantProfiles.Select(p => new ConsultantProfileLimitedViewModel { FirstName = p.FirstName });
         }
     }
 }
