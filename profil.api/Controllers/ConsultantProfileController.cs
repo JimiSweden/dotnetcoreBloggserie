@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using profil.api.Models;
 
@@ -15,6 +16,7 @@ namespace profil.api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IEnumerable<ConsultantProfile> Get()
         {
             return consultantProfileRepository.GetAll();

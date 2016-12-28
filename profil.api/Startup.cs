@@ -26,6 +26,14 @@ namespace profil.api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = "http://localhost:5000",
+                AllowedScopes = { "api1" },
+
+                RequireHttpsMetadata = false
+            });
+
             app.UseMvc();
         }
     }

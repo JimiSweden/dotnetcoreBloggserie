@@ -68,6 +68,52 @@ med <a href="https://github.com/IdentityServer/IdentityServer4.Quickstart.UI">de
 <li>&quot;Add IdentityServer packages&quot; - när jag uppdaterade alla paket till det senaste misslyckades nuget med restore, vilket löstes genom att uppdatera nuget till senaste beta <a href="https://docs.nuget.org/ndocs/guides/install-nuget">https://docs.nuget.org/ndocs/guides/install-nuget</a> ,</li>
 <li>efter det följde jag denna länk för uppdatering av core till .net core 1.1 <a href="https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/">https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/</a></li>
 <li>&quot;Configure IdentityServer&quot; - konfiguration av IdentityServer &quot;InMemory&quot; (dvs statisk hårdkodad konfiguration)</li>
+<li>Med Identity Server på plats kan vi lägga till till Authorization på vårt Api, ConsultantProfileController.Get() &gt;
+<ul>
+<li>Än så länge är det öppet att hämta data från <a href="http://localhost:57624/api/consultantprofile">http://localhost:57624/api/consultantprofile</a> men nu är det dags att begränsa åtkomsten.</li>
+<li>Lägg till &quot;Authorize&quot; på Get(), om du försöker hämta data nu får du tillbaks status code &quot;401 Unauthorized&quot;</li>
+</ul>
+</li>
+<li>Vi behöver även konfigurera vårt api till att använda vår IdentityServer för autentisering, dvs så att vårt api godkänner tokens utfärdade av vår IdentityServer, detta gör vi i profil.api.Startup
+<ul>
+<li>Lägg till &quot;IdentityServer4.AccessTokenValidation&quot;: &quot;1.0.1&quot; som en dependency i project.json</li>
+<li>lägg till denna middleware i Startup.Config</li>
+</ul>
+</li>
+<li>&quot;Creating the user database&quot;</li>
+<li>Eftersom vi använder Identity för användarhanteringen behöver vi initiera databasen, har du som jag uppdaterat .net core till 1.1 följ dessa steg (annars får du varningen &quot;No executable found matching command &quot;dotnet-ef&quot; när du försöker initiera databasen)
+<ul>
+<li>lägg til följande nugetpaket (<a href="https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet">https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet</a>)
+<ul>
+<li>under dependencies: &quot;Microsoft.EntityFrameworkCore.Design&quot;: {&quot;type&quot;: &quot;build&quot;, &quot;version&quot;: &quot;1.1.0&quot;}</li>
+<li>under tools: &quot;Microsoft.EntityFrameworkCore.Tools&quot;: &quot;1.1.0-preview4-final&quot;,
+&quot;Microsoft.EntityFrameworkCore.Tools.DotNet&quot;: &quot;1.1.0-preview4-final&quot;,</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>öppna en kommandoprompt i projektkatalogen för vår IdentityServer och kör följande kommandon
+<ul>
+<li>&quot;dotnet ef migrations add InitialDbMigration&quot; för att skapa vår baseline, detta är inte nödvändigt.</li>
+<li>&quot;dotnet ef database update&quot; för att initiera databasen.</li>
+</ul>
+</li>
+<li>&quot;Creating a user&quot;
+<ul>
+<li>Starta api och IdentityServer och öppna identityserver (<a href="http://localhost:5000">http://localhost:5000</a>)</li>
+<li>Registrera en användare (komplexa lösenord, t ex Abc123!, krävs som standard)</li>
+</ul>
+</li>
+<li>Nu när vi har en användare kan vi testa vårt api från ett verktyg som <a href="https://www.getpostman.com/">Postman</a>
+<ul>
+<li>anropa först IdentityServer, <a href="http://localhost:5000/connect/token,">http://localhost:5000/connect/token,</a> från postman med följande inställningar
+<ul>
+<li>(client_id, client_secret, grant_type och scope kommer från Config.GetClients(), username och password är från användaren du nyss registrerade) <img src="ReadMe_images/connect_token_settings.png" alt="Connect Token Settings" /> som svar ska du få ett json-objekt med bla a en &quot;access_token&quot;, kopiera access_token och öppna en ny flik för att skapa ett anrop mot vårt api</li>
+</ul>
+</li>
+<li>anropa vårt api enligt bilden, <a href="http://localhost:57624/api/consultantprofile,">http://localhost:57624/api/consultantprofile,</a> med headern &quot;Authorization&quot; &quot;Bearer [tokenstring]&quot; <img src="ReadMe_images/api-anrop_bearer-token.png" alt="Api Anrop Bearer Token" /> och som svar bör du nu få data från api.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

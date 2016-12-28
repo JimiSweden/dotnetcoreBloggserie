@@ -15,10 +15,13 @@
     "Microsoft.AspNetCore.Routing": "1.1.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
     "Microsoft.AspNetCore.StaticFiles": "1.1.0",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
     "Microsoft.EntityFrameworkCore.SqlServer.Design": {
       "version": "1.1.0",
       "type": "build"
+    },
+    "Microsoft.EntityFrameworkCore.Design": {
+      "type": "build",
+      "version": "1.1.0"
     },
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
     "Microsoft.Extensions.Configuration.UserSecrets": "1.1.0",
@@ -38,13 +41,16 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.1.0-preview4-final",
       "type": "build"
-    }
+    },
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0"
   },
 
   "tools": {
     "BundlerMinifier.Core": "2.2.306",
     "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
+    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
+    "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4-final",
     "Microsoft.Extensions.SecretManager.Tools": "1.1.0-preview4-final",
     "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
       "version": "1.1.0-preview4-final",

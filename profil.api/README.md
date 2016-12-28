@@ -54,4 +54,25 @@ med [deras färdiga UI](https://github.com/IdentityServer/IdentityServer4.Quicks
   - "Add IdentityServer packages" - när jag uppdaterade alla paket till det senaste misslyckades nuget med restore, vilket löstes genom att uppdatera nuget till senaste beta https://docs.nuget.org/ndocs/guides/install-nuget ,  
   - efter det följde jag denna länk för uppdatering av core till .net core 1.1 https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/
   - "Configure IdentityServer" - konfiguration av IdentityServer "InMemory" (dvs statisk hårdkodad konfiguration)
-
+  - Med Identity Server på plats kan vi lägga till till Authorization på vårt Api, ConsultantProfileController.Get() > 
+    - Än så länge är det öppet att hämta data från http://localhost:57624/api/consultantprofile men nu är det dags att begränsa åtkomsten.
+    - Lägg till "Authorize" på Get(), om du försöker hämta data nu får du tillbaks status code "401 Unauthorized"
+  - Vi behöver även konfigurera vårt api till att använda vår IdentityServer för autentisering, dvs så att vårt api godkänner tokens utfärdade av vår IdentityServer, detta gör vi i profil.api.Startup
+    - Lägg till "IdentityServer4.AccessTokenValidation": "1.0.1" som en dependency i project.json
+    - lägg till denna middleware i Startup.Config
+  - "Creating the user database" 
+  - Eftersom vi använder Identity för användarhanteringen behöver vi initiera databasen, har du som jag uppdaterat .net core till 1.1 följ dessa steg (annars får du varningen "No executable found matching command "dotnet-ef" när du försöker initiera databasen)
+    - lägg til följande nugetpaket (https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet)   
+      - under dependencies: "Microsoft.EntityFrameworkCore.Design": {"type": "build", "version": "1.1.0"}
+      - under tools: "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
+    "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4-final",
+  - öppna en kommandoprompt i projektkatalogen för vår IdentityServer och kör följande kommandon
+      - "dotnet ef migrations add InitialDbMigration" för att skapa vår baseline, detta är inte nödvändigt.
+      - "dotnet ef database update" för att initiera databasen.
+  - "Creating a user"
+    - Starta api och IdentityServer och öppna identityserver (http://localhost:5000) 
+    - Registrera en användare (komplexa lösenord, t ex Abc123!, krävs som standard)
+  - Nu när vi har en användare kan vi testa vårt api från ett verktyg som [Postman](https://www.getpostman.com/)
+    - anropa först IdentityServer, http://localhost:5000/connect/token, från postman med följande inställningar 
+      - (client_id, client_secret, grant_type och scope kommer från Config.GetClients(), username och password är från användaren du nyss registrerade) ![Connect Token Settings](ReadMe_images/connect_token_settings.png) som svar ska du få ett json-objekt med bla a en "access_token", kopiera access_token och öppna en ny flik för att skapa ett anrop mot vårt api
+    - anropa vårt api enligt bilden, http://localhost:57624/api/consultantprofile, med headern "Authorization" "Bearer [tokenstring]" ![Api Anrop Bearer Token](ReadMe_images/api-anrop_bearer-token.png) och som svar bör du nu få data från api.

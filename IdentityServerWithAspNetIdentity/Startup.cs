@@ -76,7 +76,7 @@ namespace IdentityServerWithAspNetIdentity
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage(); //Ger en sida tydlig sida för felmeddelanden
+                app.UseDeveloperExceptionPage(); //Ger en tydlig informativ sida för felmeddelanden
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
