@@ -153,9 +153,36 @@ public IEnumerable&lt;ConsultantProfile&gt; GetFullConsultantProfiles()
 <li>Perfekt,
 <ul>
 <li><a href="http://localhost:57624/api/consultantprofile/getfull">http://localhost:57624/api/consultantprofile/getfull</a> returnerar hela profilen och kräver autentisering.</li>
-<li><a href="http://localhost:57624/api/consultantprofile">http://localhost:57624/api/consultantprofile</a> kräver ingen autentisering, men.. oops, vi får både för och efternamn; det stämmer inte helt med kraven..</li>
+<li><a href="http://localhost:57624/api/consultantprofile">http://localhost:57624/api/consultantprofile</a> kräver ingen autentisering, men.. oops, vi får både för och efternamn; det stämmer inte helt med kraven.. att det ska vara så svårt att hålla reda på så få krav, det är dags att införa tester innan det blir för krångligt och innan kraven ändras, för det vet man ju att de alltid gör :)</li>
 </ul>
 </li>
+</ul>
+<h2 id="nytt-projekt-for-att-testa-vart-api">Nytt projekt för att testa vårt api</h2>
+<p>Jag är ganska bekväm med NUnuit, men eftersom deras <a href="https://github.com/nunit/dotnet-test-nunit">testrunner för .net core fortfarande är i alphastadiet</a> känns det som att det äntligen är dags att jag sätter mig in i <a href="https://xunit.github.io/docs/getting-started-dotnet-core.html">xUnit </a> som för visso är i beta, men jag har fått intrycket av att fler använder xUnit än NUnit mot .net core; jag använder mig av <a href="https://www.jetbrains.com/help/resharper/sdk/Features/UnitTest/DotNetCore.html">Resharpers </a> testrunner (som vanligt)</p>
+<ul>
+<li>Skapa ett nytt projekt, &quot;Profil.Api.Test&quot;, av typen Class library (.net core)</li>
+<li>lägg till nuget packages och config för xUnit</li>
+</ul>
+<pre><code class="language-language-aspnet">{
+    &quot;testRunner&quot;: &quot;xunit&quot;,
+    &quot;dependencies&quot;: {
+        &quot;xunit&quot;: &quot;2.2.0-*&quot;,
+        &quot;dotnet-test-xunit&quot;: &quot;2.2.0-*&quot;
+    },
+    &quot;frameworks&quot;: {
+        &quot;netcoreapp1.1&quot;: {
+            &quot;dependencies&quot;: {
+                &quot;Microsoft.NETCore.App&quot;: {
+                    &quot;type&quot;: &quot;platform&quot;,
+                    &quot;version&quot;: &quot;1.1.0&quot;
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>följ instruktionerna i <a href="https://xunit.github.io/docs/getting-started-dotnet-core.html">xUnit getting started</a> för att göra ett första test (eller kolla i testprojektet, Class1.cs), nu ska du kunna köra testerna från en kommandoprompt med kommandot &quot;dotnet test&quot;</li>
 </ul>
 
 

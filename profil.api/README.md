@@ -106,5 +106,29 @@ public IEnumerable<ConsultantProfile> GetFullConsultantProfiles()
 ```
 - Perfekt, 
   - http://localhost:57624/api/consultantprofile/getfull returnerar hela profilen och kräver autentisering.
-  - http://localhost:57624/api/consultantprofile kräver ingen autentisering, men.. oops, vi får både för och efternamn; det stämmer inte helt med kraven..
+  - http://localhost:57624/api/consultantprofile kräver ingen autentisering, men.. oops, vi får både för och efternamn; det stämmer inte helt med kraven.. att det ska vara så svårt att hålla reda på så få krav, det är dags att införa tester innan det blir för krångligt och innan kraven ändras, för det vet man ju att de alltid gör :)
+## Nytt projekt för att testa vårt api
+Jag är ganska bekväm med NUnuit, men eftersom deras [testrunner för .net core fortfarande är i alphastadiet](https://github.com/nunit/dotnet-test-nunit) känns det som att det äntligen är dags att jag sätter mig in i [xUnit ](https://xunit.github.io/docs/getting-started-dotnet-core.html) som för visso är i beta, men jag har fått intrycket av att fler använder xUnit än NUnit mot .net core; jag använder mig av [Resharpers ](https://www.jetbrains.com/help/resharper/sdk/Features/UnitTest/DotNetCore.html) testrunner (som vanligt)
 
+- Skapa ett nytt projekt, "Profil.Api.Test", av typen Class library (.net core)
+- lägg till nuget packages och config för xUnit
+```language-aspnet
+{
+    "testRunner": "xunit",
+    "dependencies": {
+        "xunit": "2.2.0-*",
+        "dotnet-test-xunit": "2.2.0-*"
+    },
+    "frameworks": {
+        "netcoreapp1.1": {
+            "dependencies": {
+                "Microsoft.NETCore.App": {
+                    "type": "platform",
+                    "version": "1.1.0"
+                }
+            }
+        }
+    }
+}
+```
+- följ instruktionerna i [xUnit getting started](https://xunit.github.io/docs/getting-started-dotnet-core.html) för att göra ett första test (eller kolla i testprojektet, Class1.cs), nu ska du kunna köra testerna från en kommandoprompt med kommandot "dotnet test"
