@@ -62,12 +62,15 @@ exempel:
 <h2 id="nytt-projekt-for-identityserver-och.net-core-identity">Nytt projekt för IdentityServer och .Net Core Identity</h2>
 <p>Här följer jag exemplet från <a href="https://identityserver4.readthedocs.io/en/release/quickstarts/6_aspnet_identity.html">Identity Server Quickstarts &gt; Using ASP.NET Core Identity</a>, (det finns även ett <a href="https://github.com/IdentityServer/IdentityServer4.Samples/tree/dev/Quickstarts/6_AspNetIdentity">exempelprojekt att ladda ner här</a>,
 med <a href="https://github.com/IdentityServer/IdentityServer4.Quickstart.UI">deras färdiga UI</a></p>
+<h3 id="folj-stegen-fran-new-project-for-asp.net-identity-till-och-med-creating-a-user">följ stegen från &quot;New Project for ASP.NET Identity&quot; till och med &quot;Creating a user&quot;</h3>
+<h4 id="add-identityserver-packages">&quot;Add IdentityServer packages&quot;</h4>
 <ul>
-<li>följ stegen från &quot;New Project for ASP.NET Identity&quot; till och med &quot;Creating a user&quot;
-<ul>
-<li>&quot;Add IdentityServer packages&quot; - när jag uppdaterade alla paket till det senaste misslyckades nuget med restore, vilket löstes genom att uppdatera nuget till senaste beta <a href="https://docs.nuget.org/ndocs/guides/install-nuget">https://docs.nuget.org/ndocs/guides/install-nuget</a> ,</li>
+<li>när jag uppdaterade alla paket till det senaste misslyckades nuget med restore, vilket löstes genom att uppdatera nuget till senaste beta <a href="https://docs.nuget.org/ndocs/guides/install-nuget">https://docs.nuget.org/ndocs/guides/install-nuget</a> ,</li>
 <li>efter det följde jag denna länk för uppdatering av core till .net core 1.1 <a href="https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/">https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/</a></li>
-<li>&quot;Configure IdentityServer&quot; - konfiguration av IdentityServer &quot;InMemory&quot; (dvs statisk hårdkodad konfiguration)</li>
+</ul>
+<h4 id="configure-identityserver">&quot;Configure IdentityServer&quot;</h4>
+<ul>
+<li>konfiguration av IdentityServer &quot;InMemory&quot; (dvs statisk hårdkodad konfiguration)</li>
 <li>Med Identity Server på plats kan vi lägga till till Authorization på vårt Api, ConsultantProfileController.Get() &gt;
 <ul>
 <li>Än så länge är det öppet att hämta data från <a href="http://localhost:57624/api/consultantprofile">http://localhost:57624/api/consultantprofile</a> men nu är det dags att begränsa åtkomsten.</li>
@@ -80,7 +83,9 @@ med <a href="https://github.com/IdentityServer/IdentityServer4.Quickstart.UI">de
 <li>lägg till denna middleware i Startup.Config</li>
 </ul>
 </li>
-<li>&quot;Creating the user database&quot;</li>
+</ul>
+<h4 id="creating-the-user-database">&quot;Creating the user database&quot;</h4>
+<ul>
 <li>Eftersom vi använder Identity för användarhanteringen behöver vi initiera databasen, har du som jag uppdaterat .net core till 1.1 följ dessa steg (annars får du varningen &quot;No executable found matching command &quot;dotnet-ef&quot; när du försöker initiera databasen)
 <ul>
 <li>lägg til följande nugetpaket (<a href="https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet">https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet</a>)
@@ -98,12 +103,11 @@ med <a href="https://github.com/IdentityServer/IdentityServer4.Quickstart.UI">de
 <li>&quot;dotnet ef database update&quot; för att initiera databasen.</li>
 </ul>
 </li>
-<li>&quot;Creating a user&quot;
+</ul>
+<h4 id="creating-a-user">&quot;Creating a user&quot;</h4>
 <ul>
 <li>Starta api och IdentityServer och öppna identityserver (<a href="http://localhost:5000">http://localhost:5000</a>)</li>
 <li>Registrera en användare (komplexa lösenord, t ex Abc123!, krävs som standard)</li>
-</ul>
-</li>
 <li>Nu när vi har en användare kan vi testa vårt api från ett verktyg som <a href="https://www.getpostman.com/">Postman</a>
 <ul>
 <li>anropa först IdentityServer, <a href="http://localhost:5000/connect/token,">http://localhost:5000/connect/token,</a> från postman med följande inställningar
@@ -111,9 +115,7 @@ med <a href="https://github.com/IdentityServer/IdentityServer4.Quickstart.UI">de
 <li>(client_id, client_secret, grant_type och scope kommer från Config.GetClients(), username och password är från användaren du nyss registrerade) <img src="ReadMe_images/connect_token_settings.png" alt="Connect Token Settings" /> som svar ska du få ett json-objekt med bla a en &quot;access_token&quot;, kopiera access_token och öppna en ny flik för att skapa ett anrop mot vårt api</li>
 </ul>
 </li>
-<li>anropa vårt api enligt bilden, <a href="http://localhost:57624/api/consultantprofile,">http://localhost:57624/api/consultantprofile,</a> med headern &quot;Authorization&quot; &quot;Bearer [tokenstring]&quot; <img src="ReadMe_images/api-anrop_bearer-token.png" alt="Api Anrop Bearer Token" /> och som svar bör du nu få data från api.</li>
-</ul>
-</li>
+<li>anropa därefter vårt api enligt bilden, <a href="http://localhost:57624/api/consultantprofile,">http://localhost:57624/api/consultantprofile,</a> med headern &quot;Authorization&quot; &quot;Bearer [tokenstring]&quot; <img src="ReadMe_images/api-anrop_bearer-token.png" alt="Api Anrop Bearer Token" /> och som svar bör du nu få data från apiet.</li>
 </ul>
 </li>
 </ul>
