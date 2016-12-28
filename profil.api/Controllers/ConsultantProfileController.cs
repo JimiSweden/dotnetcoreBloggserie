@@ -16,8 +16,16 @@ namespace profil.api.Controllers
         }
 
         [HttpGet]
+        [Route("")]//default route, behöver anges eftersom jag vill ge metoden ett tydligare namn än "Get", 
+        public IEnumerable<ConsultantProfileLimitedViewModel> GetLimitedConsultantProfiles()
+        {
+            return consultantProfileRepository.GetAllLimited();
+        }
+
+        [HttpGet]
         [Authorize]
-        public IEnumerable<ConsultantProfile> Get()
+        [Route("GetFull")]
+        public IEnumerable<ConsultantProfile> GetFullConsultantProfiles()
         {
             return consultantProfileRepository.GetAll();
         }

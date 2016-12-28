@@ -37,14 +37,14 @@ gör sin grej och skickar sedan vidare data till nästa i "pipen" (kedjan) [mw 1
 - med repositoryt [ConsultantProfileRepository.cs](Models/ConsultantProfileRepository.cs) på plats kan vi lägga till en controller för att låta vårt api hämta data.
 - för att controllern ska hittas behövs routing, det kan man sätta direkt på controllern som vi visar i koden, alternativt i Startup.cs > Configure (eller både och, controllerns konfig väger tyngst)
 exempel: 
-	```
-	private void ConfigureRoutes(IRouteBuilder routeBuilder)
-			{
-				routeBuilder.MapRoute("Default",
-					"{controller=Home}/{action=Index}/{id?}"); // controller=Home >> om controller name inte hittas (eller inte angavs), redirect till HomeController med default action(metod) Index
-			}
-	// används i Configure enligt, app.UseMvc(ConfigureRoutes)
-	```
+``` language-aspnet
+private void ConfigureRoutes(IRouteBuilder routeBuilder)
+{
+	routeBuilder.MapRoute("Default",
+		"{controller=Home}/{action=Index}/{id?}"); // controller=Home >> om controller name inte hittas (eller inte angavs), redirect till HomeController med default action(metod) Index
+}
+// används i Configure enligt, app.UseMvc(ConfigureRoutes)
+```
 - nu har vi ett fungerande api som kan leverera konsultprofiler, nästa steg är att lägga till autentisering vilket vi gör med .Net Core Identity och [Identity Server 4](https://github.com/IdentityServer/IdentityServer4)
 
 ## Nytt projekt för IdentityServer och .Net Core Identity
@@ -78,3 +78,33 @@ med [deras färdiga UI](https://github.com/IdentityServer/IdentityServer4.Quicks
     - anropa först IdentityServer, http://localhost:5000/connect/token, från postman med följande inställningar 
       - (client_id, client_secret, grant_type och scope kommer från Config.GetClients(), username och password är från användaren du nyss registrerade) ![Connect Token Settings](ReadMe_images/connect_token_settings.png) som svar ska du få ett json-objekt med bla a en "access_token", kopiera access_token och öppna en ny flik för att skapa ett anrop mot vårt api
     - anropa därefter vårt api enligt bilden, http://localhost:57624/api/consultantprofile, med headern "Authorization" "Bearer [tokenstring]" ![Api Anrop Bearer Token](ReadMe_images/api-anrop_bearer-token.png) och som svar bör du nu få data från apiet.
+
+## Reflektion
+Ok, nu har vi alltså satt upp ett api som vi kan anropa för att hämta konsultprofiler innehållande Förnamn, Efternamn och Beskrivning.
+Men just nu måste jag vara en registrerad användare för att kunna se profildata, enligt kravet ska jag kunna se profilernas förnamn även om jag inte är registrerad.
+- Här kan vi välja olika lösningar
+  - Den ena är olika api actions (controller-metoder) där en action levererar data till icke autentiserade användare och en annan action levererar data till autentiserade användare, 
+  - En annan lösning är att ta bort attributet "Authorize" från vår "Get"-action och kontrollera behörighet i denna.
+  - Eftersom jag anser att den som frågar efter data ska veta vad den frågar efter samt att jag vill ha renare metoder i mitt api väljer jag det första alternativet, med separata actions. Visst hade det varigt trevligt om klienten bara behövde anropa en metod och sen kunde visa upp data oavsett om det var fulla profilerna eller bara förnamnen, men det är mycket tydligare för klienten att returnera "401 Unauthorized" än att returnera begränsad data, dessutom blir som sagt api-koden renare; ren kod == bra kod.
+### Uppdatera api
+Så i [ConsultantProfileController](Controllers/ConsultantProfileController.cs) uppdaterar vi våra actions enligt följande
+```language-aspnet
+[HttpGet]
+[Route("")]//default Getmetod, bara för att jag vill ge metoden ett tydligare namn än "Get", 
+public IEnumerable<ConsultantProfileLimitedViewModel> GetLimitedConsultantProfiles()
+{
+    return consultantProfileRepository.GetAllLimited();
+}
+
+[HttpGet]
+[Authorize]
+[Route("GetFull")]
+public IEnumerable<ConsultantProfile> GetFullConsultantProfiles()
+{
+    return consultantProfileRepository.GetAll();
+}
+```
+- Perfekt, 
+  - http://localhost:57624/api/consultantprofile/getfull returnerar hela profilen och kräver autentisering.
+  - http://localhost:57624/api/consultantprofile kräver ingen autentisering, men.. oops, vi får både för och efternamn; det stämmer inte helt med kraven..
+

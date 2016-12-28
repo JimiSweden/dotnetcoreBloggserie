@@ -48,15 +48,16 @@ några exempel är UseWelcomePage() och Run(), alla middlewares configurerade se
 <li>och lägg till ett repository för att hämta konsultprofilerna</li>
 <li>med repositoryt <a href="Models/ConsultantProfileRepository.cs">ConsultantProfileRepository.cs</a> på plats kan vi lägga till en controller för att låta vårt api hämta data.</li>
 <li>för att controllern ska hittas behövs routing, det kan man sätta direkt på controllern som vi visar i koden, alternativt i Startup.cs &gt; Configure (eller både och, controllerns konfig väger tyngst)
-exempel:
-<pre><code>  private void ConfigureRoutes(IRouteBuilder routeBuilder)
-  		{
-  			routeBuilder.MapRoute(&quot;Default&quot;,
-  				&quot;{controller=Home}/{action=Index}/{id?}&quot;); // controller=Home &gt;&gt; om controller name inte hittas (eller inte angavs), redirect till HomeController med default action(metod) Index
-  		}
-  // används i Configure enligt, app.UseMvc(ConfigureRoutes)
+exempel:</li>
+</ul>
+<pre><code class="language-language-aspnet">private void ConfigureRoutes(IRouteBuilder routeBuilder)
+{
+	routeBuilder.MapRoute(&quot;Default&quot;,
+		&quot;{controller=Home}/{action=Index}/{id?}&quot;); // controller=Home &gt;&gt; om controller name inte hittas (eller inte angavs), redirect till HomeController med default action(metod) Index
+}
+// används i Configure enligt, app.UseMvc(ConfigureRoutes)
 </code></pre>
-</li>
+<ul>
 <li>nu har vi ett fungerande api som kan leverera konsultprofiler, nästa steg är att lägga till autentisering vilket vi gör med .Net Core Identity och <a href="https://github.com/IdentityServer/IdentityServer4">Identity Server 4</a></li>
 </ul>
 <h2 id="nytt-projekt-for-identityserver-och.net-core-identity">Nytt projekt för IdentityServer och .Net Core Identity</h2>
@@ -116,6 +117,43 @@ med <a href="https://github.com/IdentityServer/IdentityServer4.Quickstart.UI">de
 </ul>
 </li>
 <li>anropa därefter vårt api enligt bilden, <a href="http://localhost:57624/api/consultantprofile,">http://localhost:57624/api/consultantprofile,</a> med headern &quot;Authorization&quot; &quot;Bearer [tokenstring]&quot; <img src="ReadMe_images/api-anrop_bearer-token.png" alt="Api Anrop Bearer Token" /> och som svar bör du nu få data från apiet.</li>
+</ul>
+</li>
+</ul>
+<h2 id="reflektion">Reflektion</h2>
+<p>Ok, nu har vi alltså satt upp ett api som vi kan anropa för att hämta konsultprofiler innehållande Förnamn, Efternamn och Beskrivning.
+Men just nu måste jag vara en registrerad användare för att kunna se profildata, enligt kravet ska jag kunna se profilernas förnamn även om jag inte är registrerad.</p>
+<ul>
+<li>Här kan vi välja olika lösningar
+<ul>
+<li>Den ena är olika api actions (controller-metoder) där en action levererar data till icke autentiserade användare och en annan action levererar data till autentiserade användare,</li>
+<li>En annan lösning är att ta bort attributet &quot;Authorize&quot; från vår &quot;Get&quot;-action och kontrollera behörighet i denna.</li>
+<li>Eftersom jag anser att den som frågar efter data ska veta vad den frågar efter samt att jag vill ha renare metoder i mitt api väljer jag det första alternativet, med separata actions. Visst hade det varigt trevligt om klienten bara behövde anropa en metod och sen kunde visa upp data oavsett om det var fulla profilerna eller bara förnamnen, men det är mycket tydligare för klienten att returnera &quot;401 Unauthorized&quot; än att returnera begränsad data, dessutom blir som sagt api-koden renare; ren kod == bra kod.</li>
+</ul>
+</li>
+</ul>
+<h3 id="uppdatera-api">Uppdatera api</h3>
+<p>Så i <a href="Controllers/ConsultantProfileController.cs">ConsultantProfileController</a> uppdaterar vi våra actions enligt följande</p>
+<pre><code class="language-language-aspnet">[HttpGet]
+[Route(&quot;&quot;)]//default Getmetod, bara för att jag vill ge metoden ett tydligare namn än &quot;Get&quot;, 
+public IEnumerable&lt;ConsultantProfileLimitedViewModel&gt; GetLimitedConsultantProfiles()
+{
+    return consultantProfileRepository.GetAllLimited();
+}
+
+[HttpGet]
+[Authorize]
+[Route(&quot;GetFull&quot;)]
+public IEnumerable&lt;ConsultantProfile&gt; GetFullConsultantProfiles()
+{
+    return consultantProfileRepository.GetAll();
+}
+</code></pre>
+<ul>
+<li>Perfekt,
+<ul>
+<li><a href="http://localhost:57624/api/consultantprofile/getfull">http://localhost:57624/api/consultantprofile/getfull</a> returnerar hela profilen och kräver autentisering.</li>
+<li><a href="http://localhost:57624/api/consultantprofile">http://localhost:57624/api/consultantprofile</a> kräver ingen autentisering, men.. oops, vi får både för och efternamn; det stämmer inte helt med kraven..</li>
 </ul>
 </li>
 </ul>
