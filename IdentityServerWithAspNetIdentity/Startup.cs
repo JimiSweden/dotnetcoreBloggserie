@@ -52,6 +52,20 @@ namespace IdentityServerWithAspNetIdentity
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+
+            //Lägg till Identity Server
+            services.AddIdentityServer()
+                .AddTemporarySigningCredential() //creates a fresh RSA key pair on every startup. This is useful for development situations where you don’t have access to key material.
+                
+                //här lägger vi till konfigurationen av för IdentityServer, till att börja med "InMemory" vilket vi senare byter ut mot databaskonfiguration via Entity Framework
+                .AddInMemoryPersistedGrants()
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients())
+                
+                //och så konfigurerar vi .Net core Identity till att använda vår ApplicationUser, vilken ärver IdentityUser, som vi kan modifiera och lägga till egenskaper på.
+                .AddAspNetIdentity<ApplicationUser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +76,7 @@ namespace IdentityServerWithAspNetIdentity
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage(); //Ger en sida tydlig sida för felmeddelanden
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
@@ -73,9 +87,11 @@ namespace IdentityServerWithAspNetIdentity
 
             app.UseStaticFiles();
 
-            app.UseIdentity();
+            app.UseIdentity(); //Identity skapar och hanterar en autentiserings-cookie
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+            // här under Identity lägger vi till de middlewares ví behöver, just nu är det bara IdentityServer men vi kan även lägga till Google, Facebook osv. för att tillåta inloggning med deras tjänster.
+            app.UseIdentityServer(); //Det är viktigt att denna ligger under UseIdentity eftersom IdentityServer är beroende av .Net core Identity
 
             app.UseMvc(routes =>
             {

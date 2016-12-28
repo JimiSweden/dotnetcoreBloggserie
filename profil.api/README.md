@@ -48,8 +48,10 @@ exempel:
 - nu har vi ett fungerande api som kan leverera konsultprofiler, nästa steg är att lägga till autentisering vilket vi gör med .Net Core Identity och [Identity Server 4](https://github.com/IdentityServer/IdentityServer4)
 
 ## Nytt projekt för IdentityServer och .Net Core Identity
-Här följer jag exemplet från [Identity Server Quickstarts](https://identityserver4.readthedocs.io/en/release/quickstarts/6_aspnet_identity.html), (det finns även ett [exempelprojekt att ladda ner här](https://github.com/IdentityServer/IdentityServer4.Samples/tree/dev/Quickstarts/6_AspNetIdentity),
+Här följer jag exemplet från [Identity Server Quickstarts > Using ASP.NET Core Identity](https://identityserver4.readthedocs.io/en/release/quickstarts/6_aspnet_identity.html), (det finns även ett [exempelprojekt att ladda ner här](https://github.com/IdentityServer/IdentityServer4.Samples/tree/dev/Quickstarts/6_AspNetIdentity),
 med [deras färdiga UI](https://github.com/IdentityServer/IdentityServer4.Quickstart.UI)
 - följ stegen från "New Project for ASP.NET Identity" till och med "Creating a user"
-  - när jag uppdaterade alla paket till det senaste misslyckades nuget med restore, här finns info om hur man uppdaterar nuget till senaste beta https://docs.nuget.org/ndocs/guides/install-nuget ,  
-  - efter det följde jag denna länk för uppdatering till .net core 1.1 https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/
+  - "Add IdentityServer packages" - när jag uppdaterade alla paket till det senaste misslyckades nuget med restore, vilket löstes genom att uppdatera nuget till senaste beta https://docs.nuget.org/ndocs/guides/install-nuget ,  
+  - efter det följde jag denna länk för uppdatering av core till .net core 1.1 https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/
+  - "Configure IdentityServer" - konfiguration av IdentityServer "InMemory" (dvs statisk hårdkodad konfiguration)
+
