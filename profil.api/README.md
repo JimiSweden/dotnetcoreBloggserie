@@ -152,8 +152,8 @@ Jag använder normalt sett Resharpers Unit Test Sessions, men det går lika bra 
 - Tester från kommandoprompten kör du med kommandot "dotnet test" i testprojektet ("dotnet test --help" för att se alternativ). 
 - Något jag vant mig vid från tester i javascript och typescript, med [Jasmine](https://jasmine.github.io/) och [Karma](https://karma-runner.github.io), är att ha en watcher som övervakar projektfilerna och kör testerna när något ändrats, detta kan du även göra här..
 - För att köra tester kontinuerligt lägger du till nugetpaketet nedan i testprojektets "tools" och kör kommandot "dotnet watch test", detta triggar alltså testrunnern automatiskt vid ändringar i testprojektet och de projekt som refereras av det.. mycket trevligt så länge du inte kör tunga integrationstester :)
-```language-json
-"tools": {
-    "Microsoft.DotNet.Watcher.Tools": "1.1.0-preview4-final"
-  },
-```
+	```language-json
+	"tools": {
+		"Microsoft.DotNet.Watcher.Tools": "1.1.0-preview4-final"
+	  },
+	```

@@ -207,12 +207,13 @@ lösningen var att lägga till &quot;Microsoft.DotNet.InternalAbstractions&quot;
 <ul>
 <li>Tester från kommandoprompten kör du med kommandot &quot;dotnet test&quot; i testprojektet (&quot;dotnet test --help&quot; för att se alternativ).</li>
 <li>Något jag vant mig vid från tester i javascript och typescript, med <a href="https://jasmine.github.io/">Jasmine</a> och <a href="https://karma-runner.github.io">Karma</a>, är att ha en watcher som övervakar projektfilerna och kör testerna när något ändrats, detta kan du även göra här..</li>
-<li>För att köra tester kontinuerligt lägger du till nugetpaketet nedan i testprojektets &quot;tools&quot; och kör kommandot &quot;dotnet watch test&quot;, detta triggar alltså testrunnern automatiskt vid ändringar i testprojektet och de projekt som refereras av det.. mycket trevligt så länge du inte kör tunga integrationstester :)</li>
-</ul>
-<pre><code class="language-language-json">&quot;tools&quot;: {
-    &quot;Microsoft.DotNet.Watcher.Tools&quot;: &quot;1.1.0-preview4-final&quot;
-  },
+<li>För att köra tester kontinuerligt lägger du till nugetpaketet nedan i testprojektets &quot;tools&quot; och kör kommandot &quot;dotnet watch test&quot;, detta triggar alltså testrunnern automatiskt vid ändringar i testprojektet och de projekt som refereras av det.. mycket trevligt så länge du inte kör tunga integrationstester :)
+<pre><code class="language-language-json">  &quot;tools&quot;: {
+  	&quot;Microsoft.DotNet.Watcher.Tools&quot;: &quot;1.1.0-preview4-final&quot;
+    },
 </code></pre>
+</li>
+</ul>
 
 
 </body>
