@@ -169,3 +169,8 @@ Jag använder normalt sett Resharpers Unit Test Sessions, men det går lika bra 
 		"Microsoft.DotNet.Watcher.Tools": "1.1.0-preview4-final"
 	  },
 	```
+## Skapa administration
+Administrationssidor i MVC för innehållsadministratörerna enligt kraven 
+- Som en innehållsadministratör kan jag
+  - lista alla profiler
+  - redigera, lägga till och ta bort profiler
