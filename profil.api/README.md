@@ -145,3 +145,5 @@ Jag är ganska bekväm med NUnuit, men eftersom deras [testrunner för .net core
     at Xunit.Runner.DotNet.Program.Main(String[] args)
 	```
 	lösningen var att lägga till "Microsoft.DotNet.InternalAbstractions": "1.0.0" i project.json.
+- Jag stötte även på problem med mockningen av repositoriet med Moq CallBase vilket inte fungerade som tänkt, mer om det finns att läsa i ConsultantProfileControllerTest.cs 
+- Efter implementationen av testerna (se i koden) uppfyller apiet kraven; en registrerad användare kan se all profildata, medan anonyma kan se förnamnen endast.
