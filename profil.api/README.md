@@ -146,4 +146,14 @@ Jag är ganska bekväm med NUnuit, men eftersom deras [testrunner för .net core
 	```
 	lösningen var att lägga till "Microsoft.DotNet.InternalAbstractions": "1.0.0" i project.json.
 - Jag stötte även på problem med mockningen av repositoriet med Moq CallBase vilket inte fungerade som tänkt, mer om det finns att läsa i ConsultantProfileControllerTest.cs 
-- Efter implementationen av testerna (se i koden) uppfyller apiet kraven; en registrerad användare kan se all profildata, medan anonyma kan se förnamnen endast.
+- Efter implementationen av testerna (se i koden) uppfyller apiet kraven.. en registrerad användare kan se all profildata, medan anonyma endast kan se förnamnen.
+#### Kör testerna från kommandoprompten
+Jag använder normalt sett Resharpers Unit Test Sessions, men det går lika bra med selleri...
+- Tester från kommandoprompten kör du med kommandot "dotnet test" i testprojektet ("dotnet test --help" för att se alternativ). 
+- Något jag vant mig vid från tester i javascript och typescript, med [Jasmine](https://jasmine.github.io/) och [Karma](https://karma-runner.github.io), är att ha en watcher som övervakar projektfilerna och kör testerna när något ändrats, detta kan du även göra här..
+- För att köra tester kontinuerligt lägger du till nugetpaketet nedan i testprojektets "tools" och kör kommandot "dotnet watch test", detta triggar alltså testrunnern automatiskt vid ändringar i testprojektet och de projekt som refereras av det.. mycket trevligt så länge du inte kör tunga integrationstester :)
+```language-json
+"tools": {
+    "Microsoft.DotNet.Watcher.Tools": "1.1.0-preview4-final"
+  },
+```
