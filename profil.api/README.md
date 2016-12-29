@@ -1,6 +1,7 @@
 ﻿# .Net core Web Api Projektanteckningar/Steps
-### Projektkrav 
-Applikationen ska visa en lista av konsultprofiler
+## Projektkrav 
+(Stage1: Web Api, Registrering och inloggning)
+Applikationen ska visa en lista av konsultprofiler (Klienten, vi avvaktar denna implementation ett tag)
 - En profil består av Förnamn, Efternamn och en Beskrivning
 
 Som en anonym användare kan jag
@@ -10,6 +11,16 @@ Som en anonym användare kan jag
 Som en registrerad användare kan jag
 - Se all information i konsultprofilerna
 
+### Nya krav (Stage2: administration)
+Som en innehållsadministratör kan jag
+- lista alla profiler
+- redigera, lägga till och ta bort profiler
+
+## Teknikval
+Eftersom projektet har som syfte att driva en bloggserie om [.Net core](https://docs.microsoft.com/sv-se/dotnet/) och [ASP.Net core](https://docs.microsoft.com/en-us/aspnet/core/) faller det sig naturligt att använda följande tekniker, samtliga servade i det stora fluffiga molnet. Och även om andra molntjänster skulle kunna användas kommer vi slutligen drifta allt i Azure.
+- **API**: alla moderna system exponerar data via apier, så är det. **.Net core Web API**
+- **Klient**: Kan komma att byggas i flera olika tekniker, men till att börja med blir det en mobilapp i hybridramverket **[Ionic](https://ionicframework.com/)**, som bygger på [Angular](https://angularjs.org/) och Html5. 
+- **Administration** av profildata: Då vi behöver blanda in [ASP.Net core MVC](https://docs.microsoft.com/en-us/aspnet/core/mvc) (föutom apidelen) någonstans får det bli här.
 
 
 ## Skapa nytt projekt för API
