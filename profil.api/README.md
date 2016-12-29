@@ -21,7 +21,8 @@ Eftersom projektet har som syfte att driva en bloggserie om [.Net core](https://
 - **API**: alla moderna system exponerar data via apier, så är det. **.Net core Web API**
 - **Klient**: Kan komma att byggas i flera olika tekniker, men till att börja med blir det en mobilapp i hybridramverket **[Ionic](https://ionicframework.com/)**, som bygger på [Angular](https://angularjs.org/) och Html5. 
 - **Administration** av profildata: Då vi behöver blanda in [ASP.Net core MVC](https://docs.microsoft.com/en-us/aspnet/core/mvc) (föutom apidelen) någonstans får det bli här.
-
+- **Autentisering**: med .net core känns det självklart att anväda [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity) för hantering av användare. Här skulle vi kunna nöja oss med bara Identity, men eftersom jag är en förespråkare för [IdentityServer](https://identityserver4.readthedocs.io/) gör vi implementationen med IdentityServer4 (IdS4) ovanpå core Identity. 
+  - Den stora fördelen IdS4 ger oss är att vi kan använda samma autentiseringslösning för olika system, apier i olika applikationer, något som inte är ett krav här men jag väljer då jag själv inte har testat IdS4 ännu.
 
 ## Skapa nytt projekt för API
 - Lägg till nytt projekt, ASP.NET Core Web Application (.NET Core)

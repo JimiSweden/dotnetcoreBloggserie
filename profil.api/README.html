@@ -33,6 +33,11 @@ Applikationen ska visa en lista av konsultprofiler (Klienten, vi avvaktar denna 
 <li><strong>API</strong>: alla moderna system exponerar data via apier, så är det. <strong>.Net core Web API</strong></li>
 <li><strong>Klient</strong>: Kan komma att byggas i flera olika tekniker, men till att börja med blir det en mobilapp i hybridramverket <strong><a href="https://ionicframework.com/">Ionic</a></strong>, som bygger på <a href="https://angularjs.org/">Angular</a> och Html5.</li>
 <li><strong>Administration</strong> av profildata: Då vi behöver blanda in <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc">ASP.Net core MVC</a> (föutom apidelen) någonstans får det bli här.</li>
+<li><strong>Autentisering</strong>: med .net core känns det självklart att anväda <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity">ASP.NET Core Identity</a> för hantering av användare. Här skulle vi kunna nöja oss med bara Identity, men eftersom jag är en förespråkare för <a href="https://identityserver4.readthedocs.io/">IdentityServer</a> gör vi implementationen med IdentityServer4 (IdS4) ovanpå core Identity.
+<ul>
+<li>Den stora fördelen IdS4 ger oss är att vi kan använda samma autentiseringslösning för olika system, apier i olika applikationer, något som inte är ett krav här men jag väljer då jag själv inte har testat IdS4 ännu.</li>
+</ul>
+</li>
 </ul>
 <h2 id="skapa-nytt-projekt-for-api">Skapa nytt projekt för API</h2>
 <ul>
