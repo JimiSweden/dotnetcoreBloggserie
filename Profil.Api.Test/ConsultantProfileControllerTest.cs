@@ -32,19 +32,23 @@ namespace Profil.Api.Test
             //         //CallBase anropar den riktiga metoden, måste dock sättas upp här eftersom klassen är mockad. 
             //         //repoMock.Setup(x => x.GetAllLimited()).CallBase();
             //var controller = new ConsultantProfileController(repoMock.Object);
-            
-			// Av någon anledning fick jag inte detta, ovan, att fungera och valde därför att använda InMemory-repot direkt, när databasen implementeras ger vi oss på att mocka den istället,
 
-            var repo = new InMemoryConsultantProfileRepository();            
+            // Av någon anledning fick jag inte detta, ovan, att fungera och valde därför att använda InMemory-repot direkt, när databasen implementeras ger vi oss på att mocka den istället,
+            // nedan är felmddelandet från försöket med CallBase.
+            //This is a DynamicProxy2 error: The interceptor attempted to 'Proceed' for method 'System.Collections.Generic.IEnumerable`1[profil.api.Models.ConsultantProfileLimitedViewModel] GetAllLimited()' 
+            //which has no target.When calling method without target there is no implementation to 'proceed' to and it is the responsibility 
+            //of the interceptor to mimic the implementation(set return value, out arguments etc) at Castle.DynamicProxy.AbstractInvocation.ThrowOnNoTarget()
+
+            var repo = new InMemoryConsultantProfileRepository();
             var controller = new ConsultantProfileController(repo);
 
             //eftrersom vi vill se hela objektet som json, precis så som klienten får data, behöver vi validera det serialiserade objektet
             var expectedJson = JsonConvert.SerializeObject(new { FirstName = "Jimi" });
 
-			//serialisera första objektet
+            //serialisera första objektet
             var actualJson = JsonConvert.SerializeObject(controller.GetLimitedConsultantProfiles().First());
 
-			actualJson.ShouldBeEquivalentTo(expectedJson, "_ Endast förnamnet får lämnas ut till icke registrerade användare");
+            actualJson.ShouldBeEquivalentTo(expectedJson, "_ Endast förnamnet får lämnas ut till icke registrerade användare");
         }
 
         [Fact]
@@ -57,10 +61,11 @@ namespace Profil.Api.Test
             //I "vanliga" .Net görs detta med "Thread.CurrentPrincipal = new GenericPrincipal..."
             var currentUser = GetMockedCurrentUser("Jimi");
             var mockedControllerContext = GetMockedHttpContext_WithCurrentUser(currentUser);
-            
-            var controller = new ConsultantProfileController(repoMock.Object) {
-					ControllerContext = mockedControllerContext
-                };
+
+            var controller = new ConsultantProfileController(repoMock.Object)
+            {
+                ControllerContext = mockedControllerContext
+            };
 
             var expectedJson = JsonConvert.SerializeObject(new
             {
@@ -71,11 +76,11 @@ namespace Profil.Api.Test
 
             var actualJson = JsonConvert.SerializeObject(controller.GetFullConsultantProfiles().First());
 
-			actualJson.ShouldBeEquivalentTo(expectedJson, "_ en registrerad och autentiserad användare ska kunna se all information i konsultprofilerna");
+            actualJson.ShouldBeEquivalentTo(expectedJson, "_ en registrerad och autentiserad användare ska kunna se all information i konsultprofilerna");
 
         }
 
-		
+
         private static GenericPrincipal GetMockedCurrentUser(string name)
         {
             return new GenericPrincipal(new GenericIdentity(name), new[] { "RegistreradAnvändare" });
@@ -104,6 +109,6 @@ namespace Profil.Api.Test
                 }
             };
         }
-		
+
     }
 }
