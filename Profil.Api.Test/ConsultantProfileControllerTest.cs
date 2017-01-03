@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 using Xunit;
 using Moq;
 using FluentAssertions;
-using profil.api;
-using profil.api.Controllers;
-using profil.api.Models;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Authentication.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Profil.Api.Controllers;
+using Profil.Api.Models;
 
 
 namespace Profil.Api.Test
