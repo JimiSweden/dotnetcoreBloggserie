@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace profil.api.Models
+namespace Profil.Api.Models
 {
     public interface IConsultantProfileRepository
     {
         IEnumerable<ConsultantProfile> GetAll();
-        IEnumerable<ConsultantProfileLimitedViewModel> GetAllLimited();
+        IEnumerable<ConsultantProfileNameViewModel> GetAllNameOnly();
     }
 
     //en första implementation utan att blanda in databaser
@@ -29,9 +29,9 @@ namespace profil.api.Models
             return consultantProfiles;
         }
 
-        public IEnumerable<ConsultantProfileLimitedViewModel> GetAllLimited()
+        public IEnumerable<ConsultantProfileNameViewModel> GetAllNameOnly()
         {
-            return GetAll().Select(p => new ConsultantProfileLimitedViewModel { FirstName = p.FirstName });
+            return GetAll().Select(p => new ConsultantProfileNameViewModel { FirstName = p.FirstName });
         }
     }
 }

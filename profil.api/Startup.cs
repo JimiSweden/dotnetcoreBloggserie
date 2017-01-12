@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using profil.api.Models;
+using Profil.Api.Models;
 
-namespace profil.api
+namespace Profil.Api
 {
     public class Startup
     {

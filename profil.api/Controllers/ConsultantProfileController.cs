@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using profil.api.Models;
+using Profil.Api.Models;
 
-namespace profil.api.Controllers
+namespace Profil.Api.Controllers
 {
     [Route("api/[controller]")]
     public class ConsultantProfileController : Controller  
@@ -17,9 +17,9 @@ namespace profil.api.Controllers
 
         [HttpGet]
         [Route("")]//default route, behöver anges eftersom jag vill ge metoden ett tydligare namn än "Get", 
-        public IEnumerable<ConsultantProfileLimitedViewModel> GetLimitedConsultantProfiles()
+        public IEnumerable<ConsultantProfileNameViewModel> GetAllNameOnly()
         {
-            return consultantProfileRepository.GetAllLimited();
+            return consultantProfileRepository.GetAllNameOnly();
         }
 
         [HttpGet]

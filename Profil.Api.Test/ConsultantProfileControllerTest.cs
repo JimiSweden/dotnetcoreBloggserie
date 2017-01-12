@@ -45,7 +45,7 @@ namespace Profil.Api.Test
             var expectedJson = JsonConvert.SerializeObject(new { FirstName = "Jimi" });
 
             //serialisera första objektet
-            var actualJson = JsonConvert.SerializeObject(controller.GetLimitedConsultantProfiles().First());
+            var actualJson = JsonConvert.SerializeObject(controller.GetAllNameOnly().First());
 
             actualJson.ShouldBeEquivalentTo(expectedJson, "_ Endast förnamnet får lämnas ut till icke registrerade användare");
         }

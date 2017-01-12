@@ -1,4 +1,4 @@
-﻿namespace profil.api
+﻿namespace Profil.Api.Models
 {
     public class ConsultantProfile
     {

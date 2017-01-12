@@ -151,7 +151,7 @@ Jag är ganska bekväm med NUnuit, men eftersom deras [testrunner för .net core
   - Jag väljer här att endast testa på controllernivå eftersom det är där gränsen går mot användarna.
   - När jag försökte köra testet mot apiet fick jag följande fel
 	``` 
-    Unhandled Exception: System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.DotNet.InternalAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.
+    Unhandled Exception: System.IO.FileNotFoundEx ception: Could not load file or assembly 'Microsoft.DotNet.InternalAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.
 	at Xunit.Runner.DotNet.Program.GetAvailableRunnerReporters()
     at Xunit.Runner.DotNet.Program.Run(String[] args)
     at Xunit.Runner.DotNet.Program.Main(String[] args)
