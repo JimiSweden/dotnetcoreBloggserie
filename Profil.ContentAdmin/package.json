@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "name": "profil_contentadmin",
+  "private": true,
+  "devDependencies": {
+  },
+  "dependencies": {
+    "bootstrap": "3.3.7"
+      ,
+    "material-design-icons": "3.0.1"
+  }
+}
