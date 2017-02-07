@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Profil.Api", "profil.api\Profil.Api.xproj", "{369A51DA-4B71-48BC-9944-5B3A65C6BD0F}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Profil.Api", "Profil.Api\Profil.Api.xproj", "{369A51DA-4B71-48BC-9944-5B3A65C6BD0F}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServerWithAspNetIdentity", "IdentityServerWithAspNetIdentity\IdentityServerWithAspNetIdentity.xproj", "{AE4711BF-049D-427B-8521-1A34847A5189}"
 EndProject
