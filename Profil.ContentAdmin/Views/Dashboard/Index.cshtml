@@ -1,5 +1,18 @@
-﻿@{
+﻿@using Profil.ContentAdmin.ViewModels
+@model ConsultantProfilesViewModel
+@{
     ViewBag.Title = "Hantera konsultprofiler";
     Layout = "_Layout";
 }
-<h2>Här ska vi lista alla konsultprofiler</h2>
+<h2>Hantera dina konsultprofiler</h2>
+
+<section class="list-header-container">
+    <h3>Lista av profiler</h3>
+</section>
+
+<section class="list-container">
+    @foreach (var profileItem in Model.ConsultantProfiles)
+    {
+        @Html.Partial("_ProfileItem", profileItem)
+    }
+</section>
