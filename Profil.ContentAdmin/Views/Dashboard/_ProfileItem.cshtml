@@ -1,25 +1,23 @@
 ﻿@using Profil.ContentAdmin.ViewModels
 @model ConsultantProfileItemViewModel
 
-<div class="list-item">
-    <div class="item-image-and-summary">
+<section class="list-item">
+    <section class="item-image-and-summary">
 
-        @*todo?: hur gör man för att flexbox ska fungera inuti anchor? så att det går att ha en anchor runt hela innehållet.. *@
-
-        <a class="item-image anchor-unset" asp-action="Details" asp-route-id="@Model.Id">
+        <a asp-action="Details" asp-route-id="@Model.Id">
             <img src="/content/images/profile.jpg">
         </a>
 
-        <a class="item-summary anchor-unset" asp-action="Details" asp-route-id="@Model.Id">
+        <a asp-action="Details" asp-route-id="@Model.Id">
             <p>"@Model.Summary"</p>
         </a>
 
         <a asp-action="Delete" asp-route-id="@Model.Id"><i class="medium material-icons">delete_forever</i></a>
-    </div>
+    </section>
 
-    <div class="item-name-section">
+    <section class="item-name-section">
         <a class="item-name anchor-unset" asp-action="Details" asp-route-id="@Model.Id">
             @Model.FirstName @Model.LastName
         </a>
-    </div>
-</div>
+    </section>
+</section>
