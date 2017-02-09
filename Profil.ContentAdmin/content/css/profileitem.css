@@ -1,0 +1,73 @@
+﻿/* https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+
+/*tänk på att display flex inte ärvs utan måste sättas för varje "container" som ska ha flex items*/
+.list-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/*override anchor styles för items*/
+.anchor-unset {
+    text-decoration: none !important;
+    color: #000000;
+}
+
+.list-item {
+    flex: 1 16%;
+    flex-flow: column nowrap;
+    border-radius: 4px;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    box-shadow: 2px 2px 10px #888888;
+    min-width: 25em;
+    max-width: 25em;
+    display: flex;
+}
+
+.item-image-and-summary {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.item-image img {
+    max-width: 12rem;
+}
+
+.item-summary {
+    padding-top: 2em; /*se till att texten inte hamnar i höjd med raderaknappen*/
+    
+    /*begränsa textens yta*/
+    max-width: 20em; 
+    max-height: 9em;
+    overflow: hidden;
+    
+    text-align: center;
+    font-style: italic;
+
+    display: flex;
+    align-items: flex-end; /*tryck ner texten mot botten*/
+}
+
+.item-name-section {
+    background-color: #00bfff;
+    background-color: rgba(0, 191, 255, .1);
+    border-radius: 2px;
+    padding-top: 0.2em;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.item-name {
+    padding-left: 3rem;
+    width: 100%;
+}
+
+.item-buttons {
+    margin-left: auto;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    display: flex;
+}
+    .item-buttons a {
+        margin-left: auto;
+    }
