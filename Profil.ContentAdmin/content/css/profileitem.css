@@ -23,6 +23,10 @@
     max-width: 25em;
     display: flex;
 }
+    .list-item a {
+        /*låt inte text skifta färg i länkarna när man hovrar*/
+        color: inherit;
+    }
 
 .item-image-and-summary {
     display: flex;
@@ -35,15 +39,12 @@
 
 .item-summary {
     padding-top: 2em; /*se till att texten inte hamnar i höjd med raderaknappen*/
-    
     /*begränsa textens yta*/
-    max-width: 20em; 
+    max-width: 20em;
     max-height: 9em;
     overflow: hidden;
-    
     text-align: center;
     font-style: italic;
-
     display: flex;
     align-items: flex-end; /*tryck ner texten mot botten*/
 }
@@ -68,6 +69,7 @@
     flex-flow: row nowrap;
     display: flex;
 }
+
     .item-buttons a {
         margin-left: auto;
     }
