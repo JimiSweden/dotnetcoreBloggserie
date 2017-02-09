@@ -23,10 +23,6 @@
     max-width: 25em;
     display: flex;
 }
-    .list-item a {
-        /*låt inte text skifta färg i länkarna när man hovrar*/
-        color: inherit;
-    }
 
 .item-image-and-summary {
     display: flex;
