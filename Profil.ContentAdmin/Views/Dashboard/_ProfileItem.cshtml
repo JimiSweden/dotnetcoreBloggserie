@@ -4,11 +4,11 @@
 <section class="list-item">
     <section class="item-image-and-summary">
 
-        <a asp-action="Details" asp-route-id="@Model.Id">
+        <a class="item-image anchor-unset" asp-action="Details" asp-route-id="@Model.Id">
             <img src="/content/images/profile.jpg">
         </a>
 
-        <a asp-action="Details" asp-route-id="@Model.Id">
+        <a class="item-summary anchor-unset" asp-action="Details" asp-route-id="@Model.Id">
             <p>"@Model.Summary"</p>
         </a>
 
