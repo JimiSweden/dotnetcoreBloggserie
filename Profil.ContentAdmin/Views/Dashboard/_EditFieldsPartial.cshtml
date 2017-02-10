@@ -1,0 +1,34 @@
+﻿@model ConsultantProfileViewModel
+
+<section class="edit-section">
+    <form method="post" asp-antiforgery="true" class="">
+        <fieldset>
+            <section>
+                <div>
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" required class="border-style input-field-border-style" />
+                    <span asp-validation-for="FirstName"></span>
+                </div>
+                <div>
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="border-style input-field-border-style" />
+                    <span asp-validation-for="LastName"></span>
+                </div>
+            </section>
+
+            <section class="edit-description-section">
+                <div class="edit-description-label-and-save">
+                    <label class="edit-description-label" asp-for="Description"></label>
+                    <a class="edit-save-button-top" href="javascript:document.getElementsByTagName('form').item(0).submit()">
+                        <i class="material-icons">save</i>
+                    </a>
+                </div>
+                <textarea class="border-style textarea-border-style" cols="50" rows="10" name="description">@Model.Description</textarea>
+                <span asp-validation-for="Description"></span>
+                <a class="edit-save-button-bottom" href="javascript:document.getElementsByTagName('form').item(0).submit()">
+                    <i class="material-icons">save</i>
+                </a>
+            </section>
+        </fieldset>
+    </form>
+</section>

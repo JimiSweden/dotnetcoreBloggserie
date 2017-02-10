@@ -1,0 +1,22 @@
+﻿@model ConsultantProfileViewModel
+
+@{
+    ViewBag.Title = "Redigera Konsultprofil för " + @Model.FirstName;
+}
+
+<section class="detail-and-edit-page">
+    <section class="detail-and-edit-header-section">
+
+        <h3 class="detail-and-edit-name-header">@Model.FirstName @Model.LastName</h3>
+
+        <div class="detail-and-edit-photo">
+            <img src="/content/images/profile.jpg">
+        </div>
+        <div class="detail-and-edit-header-buttons">
+            <a asp-action="Details" asp-route-id="@Model.Id"><i class="medium material-icons">pageview</i></a>
+            <a asp-action="Delete" asp-route-id="@Model.Id"><i class="medium material-icons">delete_forever</i></a>
+        </div>
+    </section>
+
+    @Html.Partial("_EditFieldsPartial", Model)
+</section>

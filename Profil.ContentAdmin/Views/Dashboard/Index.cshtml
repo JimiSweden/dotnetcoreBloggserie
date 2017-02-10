@@ -1,13 +1,13 @@
-﻿@using Profil.ContentAdmin.ViewModels
-@model ConsultantProfilesViewModel
+﻿@model ConsultantProfilesViewModel
+
 @{
     ViewBag.Title = "Hantera konsultprofiler";
-    Layout = "_Layout";
 }
 <h2>Hantera dina konsultprofiler</h2>
 
 <section class="list-header-container">
     <h3>Lista av profiler</h3>
+    <a asp-action="Create"><i class="large material-icons">add_circle_outline</i></a>
 </section>
 
 <section class="list-container">

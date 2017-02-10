@@ -1,0 +1,21 @@
+﻿@model ConsultantProfileViewModel
+
+@{
+    ViewBag.Title = "Skapa Konsultprofil";
+}
+
+<section class="detail-and-edit-page">
+    <section class="detail-and-edit-header-section">
+
+        @*todo Lägga till funktionalitet för redigering av foto*@
+        <div class="detail-and-edit-photo">
+            <img src="/content/images/profile.jpg">
+        </div>
+
+        <div class="detail-and-edit-header-buttons">
+            <a asp-action="Index"><i class="medium material-icons">cancel</i></a>
+        </div>
+    </section>
+
+    @Html.Partial("_EditFieldsPartial", Model)
+</section>
