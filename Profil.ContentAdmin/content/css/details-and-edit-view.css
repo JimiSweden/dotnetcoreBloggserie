@@ -1,0 +1,94 @@
+﻿/*detail and edit view common*/
+.detail-and-edit-page {
+    max-width: 70rem;
+}
+
+.detail-and-edit-header-section {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+}
+
+.detail-and-edit-header-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    padding-top: 0.5rem;
+    margin-left: auto;
+}
+
+    .detail-and-edit-header-buttons a {
+        padding-left: 1rem;
+    }
+
+.detail-and-edit-name-header {
+    margin-top: auto;
+}
+
+.detail-and-edit-photo {
+    margin-top: -3rem;
+    padding-bottom: 0.4em;
+    align-self: center;
+}
+
+/*detail view only */
+
+.detail-description-section {
+    padding-right: 1rem;
+}
+
+
+/*edit view only */
+
+.border-style {
+    border-radius: 5px;
+    border-color: deepskyblue;
+    border-color: rgba(0, 191, 255, 0.2);
+    border-width: 0rem;
+    background-color: lightgray;
+}
+
+.input-field-border-style {
+    padding-left: 1rem;
+    background-color: rgba(173, 216, 230, 0.2); /*lightblue*/
+}
+
+.textarea-border-style {
+    border-radius: 5px;
+    border-color: deepskyblue;
+    border-color: rgba(0, 191, 255, 0.2);
+    border-width: 0rem;
+    background-color: lightgray;
+    background-color: rgba(173, 216, 230, 0.1); /*lightblue*/
+}
+
+/**edit fields*/
+.edit-section {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.edit-description-section {
+    padding-top: 1rem;
+    padding-right: 1.5rem;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.edit-description-label-and-save {
+    flex-flow: row nowrap; /*det här är default och kan/bör utelämnas*/
+    align-items: center;
+    /*justify-content: center;*/
+    display: flex;
+}
+
+.edit-description-label {
+    align-self: center;
+}
+
+.edit-save-button-top {
+    /*padding-left: 1.5rem;*/
+    margin-left: auto;
+}
+
+.edit-save-button-bottom {
+    margin-left: auto;
+}
