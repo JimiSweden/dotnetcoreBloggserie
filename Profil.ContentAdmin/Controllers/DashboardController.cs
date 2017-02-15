@@ -49,6 +49,12 @@ namespace Profil.ContentAdmin.Controllers
             return View(new ConsultantProfileViewModel());
         }
 
+        public IActionResult Delete(Guid id)
+        {
+            //en lyckad delete skickar användaren till listan
+            return RedirectToAction("Index");
+        }
+
 
         private ConsultantProfilesViewModel GetDummyProfiles()
         {
@@ -59,7 +65,7 @@ namespace Profil.ContentAdmin.Controllers
                     new ConsultantProfileItemViewModel
                     {
                         FirstName = "Jimi", LastName = "Friis",
-                        Summary = "Gillar bra kod, affärsutvekling och golf",
+                        Summary = "Gillar bra kod, affärsutveckling och golf",
                         Id = new Guid("00000000-0000-0000-0000-000000000001")
                     },
                     new ConsultantProfileItemViewModel
