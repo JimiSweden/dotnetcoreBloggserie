@@ -77,7 +77,7 @@ namespace Profil.ContentAdmin.Controllers
                     new ConsultantProfileItemViewModel
                     {
                         FirstName = "Mikael", LastName = "Sundström",
-                        Summary = "Teknik och bakning ligger honom i fatet",
+                        Summary = "Glänser inom teknik och bakning",
                         Id = new Guid("00000000-0000-0000-0000-000000000003")
                     },
                 }
