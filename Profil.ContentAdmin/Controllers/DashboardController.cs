@@ -46,7 +46,8 @@ namespace Profil.ContentAdmin.Controllers
 
         public IActionResult Create()
         {
-            return View(new ConsultantProfileViewModel());
+            var model = new ConsultantProfileViewModel();
+            return View(model);
         }
 
         public IActionResult Delete(Guid id)
