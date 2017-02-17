@@ -10,7 +10,10 @@ I bloggserien går jag igenom hur man bygger en liten applikation med flera olik
 - Hosting i Azure med bland annat Azure DocumentDB
 - Någon typ av klient i React och React Native
 
-Läs bloggserien här http://www.agero.se/blogg/asp-dotnet-core-del1-vad-och-varf%C3%B6r
+Läs bloggserien här 
+http://www.agero.se/blogg/asp-dotnet-core-del1-vad-och-varf%C3%B6r
+http://www.agero.se/blogg/asp-dotnet-core-del2-web-api-implementation-och-autentisering-med-identity-och-identityserver
+http://www.agero.se/blogg/asp-dotnet-core-del3.1-mvc-innehållsadministration-grunden-och-det-visuella
 
 ## Readme i "Profil.Api" innehåller kommentarer <del>som utökas vartefter projektet växer</del> för blogginlägg del2.
 Observera att bloggsidorna innehåller utförligare guidning än vad som finns i Readme.
