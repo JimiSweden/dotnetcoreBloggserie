@@ -12,5 +12,6 @@ I bloggserien går jag igenom hur man bygger en liten applikation med flera olik
 
 Läs bloggserien här http://www.agero.se/blogg/asp-dotnet-core-del1-vad-och-varf%C3%B6r
 
-## Readme i "Profil.Api" innehåller kommentarer som utökas vartefter projektet växer.
+## Readme i "Profil.Api" innehåller kommentarer <del>som utökas vartefter projektet växer</del> för blogginlägg del2.
 Observera att bloggsidorna innehåller utförligare guidning än vad som finns i Readme.
+På grund av att bloggverktyget Hubspot som vi använder inte stödjer Markdown-filer har jag valt att istället kopiera in blogginläggen i Word.
